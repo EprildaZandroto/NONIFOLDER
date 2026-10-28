@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Praktik Tailwind CSS - Profile Card</title>
+    <!-- Memanggil Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-100 min-h-screen flex items-center justify-center p-4">
+
+    <!-- CARD CONTAINER 
+         - bg-white: latar belakang putih
+         - shadow-xl: bayangan besar agar terlihat melayang
+         - rounded-2xl: sudut sangat bulat (modern)
+         - p-8: padding dalam
+         - flex flex-col: susunan vertikal di HP
+         - md:flex-row: berubah jadi horizontal di layar medium (768px+)
+         - items-center: semua elemen di tengah
+         - gap-6: jarak antar elemen (foto dan teks)
+    -->
+    <div class="bg-white shadow-xl rounded-2xl p-8 max-w-md w-full flex flex-col md:flex-row items-center gap-6 border border-slate-100">
+        
+        <!-- FOTO PROFIL
+             - w-24 h-24: ukuran 96px x 96px
+             - rounded-full: lingkaran sempurna
+             - object-cover: gambar tidak gepeng
+             - ring-4: garis tepi (border luar)
+             - ring-blue-500: warna garis tepi biru
+        -->
+        <img class="w-24 h-24 rounded-full object-cover ring-4 ring-blue-500 shadow-lg" 
+             src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=200&q=80" 
+             alt="User Profile">
+
+        <!-- KONTEN TEKS 
+             - text-center: teks di tengah (default HP)
+             - md:text-left: teks rata kiri di layar medium
+        -->
+        <div class="text-center md:text-left">
+            <h2 class="text-2xl font-bold text-slate-800">Alex Pratama</h2>
+            <p class="text-blue-600 font-medium">Full Stack Developer</p>
+            <p class="text-slate-500 text-sm mt-2 leading-relaxed">
+                Mahasiswa Teknik Informatika yang senang membangun aplikasi web modern dan responsif.
+            </p>
+
+            <!-- TOMBOL AKSI 
+                 - transition-all: efek animasi halus saat di-hover
+                 - hover:scale-105: membesar sedikit saat disentuh mouse
+            -->
+            <div class="mt-5 flex gap-3 justify-center md:justify-start">
+                <button class="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg shadow-md transition-all active:scale-95">
+                    Follow
+                </button>
+                <button class="px-5 py-2 border border-slate-300 hover:bg-slate-50 text-slate-600 text-sm font-semibold rounded-lg transition-all">
+                    Message
+                </button>
+            </div>
+        </div>
+        
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Praktikum Pertemuan 4 - Modern Layouting (Flexbox & Grid)</title>
+    <style>
+        /* ========================================== */
+        /* 1. CSS RESET & VARIABEL                    */
+        /* ========================================== */
+        :root {
+            --ars-navy: #a7588f;
+            --ars-yellow: #eeecea;
+            --bg-light:  #a7588f;
+            --text-dark: #f4f8ff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box; /* Memastikan padding tidak merusak lebar elemen */
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* ========================================== */
+        /* 2. NAVBAR (IMPLEMENTASI FLEXBOX)           */
+        /* ========================================== */
+        header {
+            background-color: var(--ars-navy);
+            padding: 15px 30px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            /* MOBILE-FIRST: Default arah vertikal (menumpuk ke bawah di HP) */
+            flex-direction: column; 
+            align-items: center;
+            gap: 12px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            color: #000000;
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--ars-yellow);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #e2e8f0;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--ars-yellow);
+        }
+
+        /* ========================================== */
+        /* 3. HERO SECTION (FLEXBOX PERFECT CENTERING)*/
+        /* ========================================== */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Memusatkan secara vertikal (Main Axis) */
+            align-items: center;     /* Memusatkan secara horizontal (Cross Axis) */
+            text-align: center;
+            min-height: 350px;
+            background: linear-gradient(135deg, var(--ars-navy), #1e3a5a);
+            color: white;
+            padding: 40px 20px;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            color: var(--ars-yellow);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            color: #cbd5e1;
+            margin-bottom: 20px;
+        }
+
+        .btn-cta {
+            background-color: var(--ars-yellow);
+            color: var(--ars-navy);
+            padding: 10px 25px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .btn-cta:hover {
+            background-color: #000000;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* ========================================== */
+        /* 4. SERVICES SECTION (IMPLEMENTASI CSS GRID)*/
+        /* ========================================== */
+        .services-section {
+            padding: 60px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 1.8rem;
+            color: var(--ars-navy);
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: var(--ars-yellow);
+            margin: 8px auto 0;
+            border-radius: 2px;
+        }
+
+        /* Kontainer Grid Utama */
+        .grid-container {
+            display: grid;
+            /* MOBILE-FIRST: Default 1 kolom penuh di layar HP */
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+
+        .card {
+            background: rgb(0, 0, 0);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--ars-navy);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .card h3 {
+            color: var(--ars-navy);
+            margin-bottom: 12px;
+            font-size: 1.2rem;
+        }
+
+        .card p {
+            color: #dedfe0;
+            font-size: 0.9rem;
+        }
+
+        /* ========================================== */
+        /* 5. FOOTER                                  */
+        /* ========================================== */
+        footer {
+            background-color: #000000;
+            color: #000000;
+            text-align: center;
+            padding: 25px 20px;
+            font-size: 0.85rem;
+            margin-top: 40px;
+        }
+
+        /* ========================================== */
+        /* 6. MEDIA QUERIES (RESPONSIVE BREAKPOINT)   */
+        /* ========================================== */
+        /* Aturan di dalam sini aktif jika lebar layar minimal 768px (Tablet / Desktop) */
+        @media (min-width: 768px) {
+            /* Ubah Navbar dari menumpuk (column) menjadi menyamping (row) */
+            .navbar {
+                flex-direction: row;
+                justify-content: space-between; /* Logo di kiri, Menu di kanan */
+            }
+
+            /* Ubah Grid Services dari 1 kolom menjadi 3 kolom sejajar */
+            .grid-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER / NAVBAR -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">ARS<span>Dev</span></div>
+            <ul class="nav-links">
+                <li><a href="#">Beranda</a></li>
+                <li><a href="#">Layanan</a></li>
+                <li><a href="#">Portofolio</a></li>
+                <li><a href="#">Kontak</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <h1>Solusi Digital Masa Kini</h1>
+        <p>Membangun antarmuka web yang cepat, responsif, dan elegan menggunakan teknik tata letak CSS modern.</p>
+        <a href="#" class="btn-cta">Mulai Sekarang</a>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section class="services-section">
+        <h2 class="section-title">Layanan Profesional Kami</h2>
+        
+        <div class="grid-container">
+            <!-- Card 1 -->
+            <div class="card">
+                <h3>Web Development</h3>
+                <p>Mengembangkan aplikasi web berbasis sistem yang andal, cepat, aman, dan disesuaikan dengan kebutuhan bisnis Anda.</p>
+            </div>
+            
+            <!-- Card 2 -->
+            <div class="card">
+                <h3>UI/UX Design</h3>
+                <p>Merancang struktur tata letak (wireframe) dan antarmuka visual yang memanjakan mata serta mudah digunakan pengguna.</p>
+            </div>
+            
+            <!-- Card 3 -->
+            <div class="card">
+                <h3>Responsive Design</h3>
+                <p>Memastikan situs web Anda tampil sempurna dan proporsional di berbagai jenis perangkat, mulai dari ponsel hingga desktop.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2024 Pemrograman Web 1 — Teknik Informatika ARS University. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
+
+
+   

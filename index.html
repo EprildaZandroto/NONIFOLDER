@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pertemuan 3 - Tailwind CSS Layouting</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+
+    <!-- Navigation -->
+    <nav class="bg-blue-600 p-4 text-white shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-bold">Latihan Web</h1>
+            <ul class="flex space-x-4">
+                <li><a href="index.html" class="hover:underline">Home</a></li>
+                <li><a href="about.html" class="hover:underline">About</a></li>
+                <li><a href="contact.html" class="hover:underline">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="container mx-auto mt-8 p-6 bg-white rounded-lg shadow-md text-center">
+        <h2 class="text-3xl font-bold text-gray-800 mb-4">Materi Pertemuan 3</h2>
+        <p class="text-gray-600">Belajar Layouting menggunakan Tailwind CSS dengan Grid dan Flexbox.</p>
+    </header>
+
+    <!-- Main Content Layouting -->
+    <main class="container mx-auto mt-8 px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
+            
+            <!-- Card 1 -->
+            <div class="bg-white dark:bg-slate-700 p-6 rounded-lg shadow-md border-t-4 border-blue-500">
+                <h3 class="font-bold text-lg dark:text-white mb-2">Flexbox</h3>
+                <p class="text-gray-600 dark:text-white">Mengatur posisi elemen dalam satu dimensi (baris atau kolom).</p>
+                <button class="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 transition">Detail</button>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-green-500">
+                <h3 class="font-bold text-lg mb-2">Grid Layout</h3>
+                <p class="text-gray-600">Mengatur tata letak halaman dalam dua dimensi (baris dan kolom sekaligus).</p>
+                <button class="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700 transition">Detail</button>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-red-500">
+                <h3 class="font-bold text-lg mb-2">Responsive</h3>
+                <p class="text-gray-600">Memastikan tampilan web menyesuaikan ukuran layar perangkat.</p>
+                <button class="mt-4 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700 transition">Detail</button>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-red-500">
+                <h3 class="font-bold text-lg mb-2">Responsive</h3>
+                <p class="text-gray-600">Memastikan tampilan web menyesuaikan ukuran layar perangkat.</p>
+                <button class="mt-4 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700 transition">Detail</button>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-12 py-6 bg-gray-800 text-white text-center">
+        <p>&copy; 2026 Latihan Web Development - Pertemuan 3</p>
+    </footer>
+
+</body>
+</html>

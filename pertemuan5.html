@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Praktikum JS & DOM - ARS University</title>
+    <style>
+        /* CSS Dasar */
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            transition: background-color 0.4s, color 0.4s; /* Animasi perpindahan warna */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .card {
+            text-align: center;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            background-color: #ffffff;
+            color: #333;
+            width: 300px;
+        }
+
+        /* Class khusus untuk Mode Gelap */
+        body.dark-mode {
+            background-color: #1a202c; /* Abu-abu sangat tua */
+            color: #f7fafc; /* Putih tulang */
+        }
+
+        body.dark-mode .card {
+            background-color: #2d3748; /* Abu-abu kartu */
+            color: #ffffff;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+
+        button {
+            padding: 10px 20px;
+            cursor: pointer;
+            border: none;
+            border-radius: 8px;
+            background-color: #3182ce;
+            color: white;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+
+        button:active {
+            transform: scale(0.95); /* Efek tombol tertekan */
+        }
+    </style>
+</head>
+<body id="app-body">
+
+    <div class="card">
+        <h2 id="status-text">Mode Terang Aktif</h2>
+        <p>Klik tombol di bawah untuk mengubah tema tampilan secara dinamis.</p>
+        
+        <!-- Tombol Interaktif -->
+        <button id="theme-btn">Ubah ke Mode Gelap</button>
+    </div>
+
+    <script>
+        // 1. SELEKSI ELEMEN (DOM Selection)
+        const btn = document.querySelector("#theme-btn");
+        const body = document.querySelector("#app-body");
+        const statusText = document.querySelector("#status-text");
+
+        // 2. FUNGSI UNTUK UPDATE TAMPILAN
+        // Fungsi ini mengubah teks judul dan teks tombol berdasarkan kondisi mode
+        const updateUI = (isDark) => {
+            if (isDark) {
+                statusText.innerText = "Mode Gelap Aktif";
+                btn.innerText = "Ubah ke Mode Terang";
+                btn.style.backgroundColor = "#e53e3e"; // Ubah tombol jadi merah saat mode gelap
+            } else {
+                statusText.innerText = "Mode Terang Aktif";
+                btn.innerText = "Ubah ke Mode Gelap";
+                btn.style.backgroundColor = "#3182ce"; // Balikkan ke biru
+            }
+        }
+
+        // 3. MENANGANI CLICK EVENT
+        btn.addEventListener("click", () => {
+            // Togle class 'dark-mode' pada body
+            body.classList.toggle("dark-mode");
+
+            // Cek apakah sekarang dalam kondisi dark mode atau tidak
+            const isDarkNow = body.classList.contains("dark-mode");
+
+            // 4. LOCAL STORAGE (Menyimpan pilihan user)
+            // Simpan status ke dalam storage agar tidak hilang saat refresh
+            localStorage.setItem("saved-theme", isDarkNow ? "dark" : "light");
+
+            // Update UI teksnya
+            updateUI(isDarkNow);
+        });
+
+        // 5. PENGECEKAN SAAT HALAMAN PERTAMA KALI DIMUAT (On Load)
+        const currentTheme = localStorage.getItem("saved-theme");
+
+        if (currentTheme === "dark") {
+            body.classList.add("dark-mode"); // Aktifkan mode gelap jika data di storage adalah 'dark'
+            updateUI(true);
+        }
+
+    </script>
+</body>
+</html>
