@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Praktikum Form - Pemrograman Web 1</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: #f1f5f9; color: #1e293b; padding: 30px 15px; }
+        .container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 30px; }
+        
+        .card { background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); border-top: 4px solid #0e2a47; }
+        .card.yellow { border-top-color: #f59e0b; }
+        
+        h2 { color: #0e2a47; margin-bottom: 8px; font-size: 1.25rem; }
+        p.subtitle { color: #64748b; font-size: 0.875rem; margin-bottom: 20px; }
+        
+        .form-group { margin-bottom: 16px; }
+        label { display: block; font-size: 0.875rem; font-weight: 600; margin-bottom: 6px; color: #334155; }
+        
+        input[type="text"], input[type="email"], select {
+            width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.9rem;
+        }
+        input[type="text"]:focus, input[type="email"]:focus, select:focus {
+            outline: none; border-color: #0e2a47; box-shadow: 0 0 0 3px rgba(14,42,71,0.1);
+        }
+
+        .options-group { display: flex; gap: 15px; flex-wrap: wrap; margin-top: 5px; }
+        .options-group label { font-weight: normal; cursor: pointer; display: flex; align-items: center; gap: 6px; }
+
+        .btn {
+            padding: 10px 20px; border: none; border-radius: 6px; font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: background 0.2s;
+        }
+        .btn-navy { background-color: #0e2a47; color: white; }
+        .btn-navy:hover { background-color: #1e3a5a; }
+        .btn-yellow { background-color: #f59e0b; color: #0e2a47; }
+        .btn-yellow:hover { background-color: #d97706; color: white; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- BENTUK 1: FORM DENGAN METODE GET -->
+    <div class="card yellow">
+        <h2>1. Form Pencarian (Metode GET)</h2>
+        <p class="subtitle">Data dikirimkan melalui URL (Query String). Cocok untuk pencarian & filter.</p>
+        
+        <!-- Action mengarah ke proses_get.php | Method: GET -->
+        <form action="proses_get.php" method="GET">
+            <div class="form-group">
+                <label for="keyword">Kata Kunci Pencarian:</label>
+                <input type="text" id="keyword" name="keyword" placeholder="Ketik kata kunci (misal: HTML, PHP)..." required>
+            </div>
+            <div class="form-group">
+                <label for="nama">Kata Kunci Pencarian:</label>
+                <input type="text" id="nama" name="nama" placeholder="Ketik nama lengkap..." required>
+            </div>
+            <div class="form-group">
+                <label for="kategori">Kategori:</label>
+                <select id="kategori" name="kategori">
+                    <option value="semua">Semua Kategori</option>
+                    <option value="artikel">Artikel / Tutorial</option>
+                    <option value="buku">Buku Referensi</option>
+                    <option value="video">Video Pembelajaran</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-yellow">🔍 Cari Data (GET)</button>
+        </form>
+    </div>
+
+    <!-- BENTUK 2: FORM DENGAN METODE POST -->
+    <div class="card">
+        <h2>2. Form Pendaftaran Mahasiswa (Metode POST)</h2>
+        <p class="subtitle">Data dikirimkan secara tersembunyi di dalam HTTP Body. Cocok untuk input data sensitif/banyak.</p>
+
+        <!-- Action mengarah ke proses_post.php | Method: POST -->
+        <form action="proses_post.php" method="POST">
+            <div class="form-group">
+                <label for="nama">Nama Lengkap:</label>
+                <input type="text" id="nama" name="nama" placeholder="Contoh: Budi Santoso" required>
+            </div>
+
+            <div class="form-group">
+                <label for="nim">NIM (Nomor Induk Mahasiswa):</label>
+                <input type="text" id="nim" name="nim" placeholder="Contoh: 12200123" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Alamat Email:</label>
+                <input type="email" id="email" name="email" placeholder="contoh@ars.ac.id" required>
+            </div>
+
+            <div class="form-group">
+                <label for="prodi">Program Studi:</label>
+                <select id="prodi" name="prodi" required>
+                    <option value="">-- Pilih Program Studi --</option>
+                    <option value="Teknik Informatika">Teknik Informatika</option>
+                    <option value="Sistem Informasi">Sistem Informasi</option>
+                    <option value="Sistem Informasi Akuntansi">Sistem Informasi Akuntansi</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Jenis Kelamin:</label>
+                <div class="options-group">
+                    <label><input type="radio" name="gender" value="Laki-laki" required> Laki-laki</label>
+                    <label><input type="radio" name="gender" value="Perempuan" required> Perempuan</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Minat / Hobi (Boleh pilih lebih dari 1):</label>
+                <div class="options-group">
+                    <label><input type="checkbox" name="hobi[]" value="Web Development"> Web Dev</label>
+                    <label><input type="checkbox" name="hobi[]" value="Mobile Apps"> Mobile Apps</label>
+                    <label><input type="checkbox" name="hobi[]" value="UI/UX Design"> UI/UX Design</label>
+                    <label><input type="checkbox" name="hobi[]" value="Data Science"> Data Science</label>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-navy">💾 Simpan Data (POST)</button>
+        </form>
+    </div>
+
+</div>
+
+</body>
+</html>
